@@ -10,7 +10,7 @@ class Common {
 
   static Widget infoMessage(String text, TextStyle style, double top) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(24.r, top, 0.0, 0.0),
+      padding: EdgeInsets.fromLTRB(24, top, 0.0, 0.0),
       child: Row(children: [
         Text(
           text,
@@ -141,7 +141,7 @@ class Common {
   static Widget bottomButton(
       {Key? key,
       required BuildContext context,
-      buttonColor1 = CommonColor.orange, // 버튼 1의 색상입니다. 디폴트 그레이 고 설정으로 바꿔줄 수 있습니다.
+      buttonColor1 = const Color(0xFF6C5DD3), // 버튼 1의 색상입니다. 디폴트 그레이 고 설정으로 바꿔줄 수 있습니다.
 
       textColor1 = CommonColor.white, // 버튼 1의 텍스트색상 입니다.
       double button1Margin = 15,
@@ -160,7 +160,7 @@ class Common {
       children: [
         AnimatedContainer(
           duration: const Duration(milliseconds: 0),
-          height: MediaQuery.of(context).viewInsets.bottom <= 0 ? null : 0.r,
+          height: MediaQuery.of(context).viewInsets.bottom <= 0 ? null : 0,
           child: Stack(
             children: [
               gradientVisible == true
@@ -169,7 +169,7 @@ class Common {
                         children: [
                           Expanded(
                             child: Container(
-                              height: 24.r,
+                              height: 24,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.topCenter,
@@ -191,7 +191,7 @@ class Common {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: horizontalPaddding.r, vertical: verticalPaddding.r),
+                      padding: EdgeInsets.symmetric(horizontal: horizontalPaddding, vertical: verticalPaddding),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -202,7 +202,7 @@ class Common {
                                 padding: EdgeInsets.all(button1Margin.r),
                                 primary: CommonColor.navy, // foreground
                                 backgroundColor: buttonColor1,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.r)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
                               ),
                               child: Text(
                                 buttonText1,
@@ -551,6 +551,21 @@ class Common {
           ),
         ),
       ),
+    );
+  }
+
+  static void CommonSnackBar(
+      {required String messageText, Color textColor = CommonColor.white, Color backgroundColor = CommonColor.orange, dynamic position = SnackPosition.TOP}) {
+    Get.rawSnackbar(
+      borderRadius: 8.r,
+      snackPosition: position,
+      margin: position == SnackPosition.BOTTOM ? EdgeInsets.only(top: 16.r, left: 16.r, right: 16.r) : EdgeInsets.symmetric(vertical: 16.r, horizontal: 16.r),
+      padding: EdgeInsets.symmetric(vertical: 16.r, horizontal: 16.r),
+      messageText: Text(
+        messageText,
+        style: CommonTextStyle.bold(color: textColor, fontSize: 16),
+      ),
+      backgroundColor: backgroundColor,
     );
   }
 }
