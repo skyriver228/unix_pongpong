@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -28,11 +29,13 @@ class HomePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(onTap: () {
-              Get.offAll(const HomePage());
-            }, child: Text('URL')),
+            InkWell(
+                onTap: () {
+                  Get.offAll(const HomePage());
+                },
+                child: const Text('URL')),
             Container(width: 25),
-            InkWell(onTap: () {}, child: Text('PDF'))
+            InkWell(onTap: () {}, child: const Text('PDF'))
           ],
         ),
         actions: [
@@ -50,9 +53,8 @@ class HomePage extends StatelessWidget {
                 flex: 1,
                 child: Container(
                   color: const Color.fromRGBO(36, 39, 49, 1),
-                  child: Center(
-                    child: Text('Flex 1',
-                        style: TextStyle(fontSize: 36.0, color: Colors.white)),
+                  child: const Center(
+                    child: Text('Flex 1', style: TextStyle(fontSize: 36.0, color: Colors.white)),
                   ),
                 ),
               ),
@@ -65,9 +67,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Image.network(
                               'https://s3-alpha-sig.figma.com/img/145b/c5ce/f866d893d9962f9710e6814087275930?Expires=1655683200&Signature=Li61LIKplDYsNWH1d1TNo71G2-n-581XwLA9WL8~JQ9YXOzyf7jY8AazTFWyjJa5NgHrLbTLAQDPOC5-iNHDsfGnMf4AaFC0MnP2jiWmConKOg0PiniwjXUPPCLneM697utEy-rlzhiv6JNW5TVybbcIkG-Ryl4WFRKxo18NPTcCpHX684PfI~xgRsUg0CVd84hOJXbtYD1fp0s0LPDIDEKu5a29oJzM7bTfogCzCKlGToca-IrqY-C2RfhwsVNZnQuB3-ZE~uf7wE7OaUHH428mokyFotWozVNrQBfZEd8o3JFB6G-czap-0wFvuTfc0fJAhICb4Idn-S5o-S8WnQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                          Text('Input url for annalysis',
-                              style: TextStyle(
-                                  fontSize: 36.0, color: Colors.white)),
+                          const Text('Input url for annalysis', style: TextStyle(fontSize: 36.0, color: Colors.white)),
                         ],
                       ),
                       Row(
@@ -80,16 +80,18 @@ class HomePage extends StatelessWidget {
                                   prefixIcon: Image.network(
                                       'https://s3-alpha-sig.figma.com/img/862a/978f/e8862e8ba14275ceafb493e7ec00aa61?Expires=1655683200&Signature=c~-03z3VsMLk78P0cY3tmslVc1fhrcgjS1kJ7GtBkKeSfZnu~AMYgxhpz7cPC50tUU6T1yhL-EsQS~DuADcesZSfQiL75PNeh4eXnrmQLq1CEStFyEsL8a-Pj7TLYhu3-NMxefHZLUYEojD~0w9903rn9idFZuHdoqO171~~qIvzm49STmahpAlW7sS2UMwqZYtJD531y-WtzBwmNMK8l3xsTv4066tvgvV8x~2UJRjy9a4hgRt3Upp1P7UbXnOQ7n0e67H5uDalH882rt-EdbDVvL7OYwoPv3cOlGhmvf9oRuN6hvQPLg5R1uf2jnoJ008yL0RoPL0aNt2LSZeVRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
                                   hintText: "Input link here",
-                                  suffixIcon: InkWell(
-                                      onTap: () {
-                                      },
+                                  suffixIcon: SizedBox(
+                                    width: 100,
+                                    height: 40,
+                                    child: InkWell(
+                                      onTap: () {},
                                       child: Image.network(
-                                          'https://s3-alpha-sig.figma.com/img/97be/86ea/0d749f1a9b9f08a43ba6d0ef55e600a0?Expires=1655683200&Signature=U6ti-AlDCJi2709Fe3tm5WSh-fOQEriFxmqIjteyYjGF2QJTYu-c9aLspi7r2TJ1ul~8GR0C6Y2BVIdtC3n14bcq0AOd21CIqBIOiVGSLN8l7RqKH8o68pK1DPztp~ROwp4yllwTC2EzAhsTIygPdmPYDv1Hx5Ovp14Y6FOne7S02d4jmkn6iu0IKYxerMog5iWkcUkck~EylfW-aFolgAdbG4zYtpLN16jWPar2JQD4bjqNS7XhHAOo9G~EZCcdmoPHbcqyhOYt5OF4nc1gBj9-Kd6Vb6HiGwz~Rkuyfa0LpFZoU77ZgIBh3yFJ9AtFPUhsFlD8jDCJQ6~0QUg9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA')),
-                                  hintStyle: const TextStyle(
-                                      fontSize: 20.0, color: Colors.white),
+                                          'https://s3-alpha-sig.figma.com/img/97be/86ea/0d749f1a9b9f08a43ba6d0ef55e600a0?Expires=1655683200&Signature=U6ti-AlDCJi2709Fe3tm5WSh-fOQEriFxmqIjteyYjGF2QJTYu-c9aLspi7r2TJ1ul~8GR0C6Y2BVIdtC3n14bcq0AOd21CIqBIOiVGSLN8l7RqKH8o68pK1DPztp~ROwp4yllwTC2EzAhsTIygPdmPYDv1Hx5Ovp14Y6FOne7S02d4jmkn6iu0IKYxerMog5iWkcUkck~EylfW-aFolgAdbG4zYtpLN16jWPar2JQD4bjqNS7XhHAOo9G~EZCcdmoPHbcqyhOYt5OF4nc1gBj9-Kd6Vb6HiGwz~Rkuyfa0LpFZoU77ZgIBh3yFJ9AtFPUhsFlD8jDCJQ6~0QUg9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                    ),
+                                  ),
+                                  hintStyle: const TextStyle(fontSize: 20.0, color: Colors.white),
                                   filled: true,
-                                  fillColor:
-                                      const Color.fromRGBO(36, 39, 49, 0.7),
+                                  fillColor: const Color.fromRGBO(36, 39, 49, 0.7),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15),
                                     borderSide: BorderSide.none,
@@ -99,7 +101,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       Container(
-                        child: LineChartSample4(),
+                        child: const LineChartSample4(),
                       )
                     ])),
               )
@@ -113,8 +115,6 @@ class HomePage extends StatelessWidget {
 
 class LineChartSample4 extends StatelessWidget {
   const LineChartSample4({Key? key}) : super(key: key);
-
-
 
   static const _dateTextStyle = TextStyle(
     fontSize: 10,
