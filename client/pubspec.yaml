@@ -39,6 +39,8 @@ dependencies:
   http:
   timelines:
   get:
+  fl_chart: ^0.51.0
+
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'dart:math' as math;
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -96,10 +97,99 @@ class HomePage extends StatelessWidget {
                             ),
                           )
                         ],
+                      ),
+                      Container(
+                        child: LineChartSample4(),
                       )
                     ])),
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LineChartSample4 extends StatelessWidget {
+  const LineChartSample4({Key? key}) : super(key: key);
+
+
+
+  static const _dateTextStyle = TextStyle(
+    fontSize: 10,
+    color: Colors.purple,
+    fontWeight: FontWeight.bold,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    const cutOffYValue = 5.0;
+
+    return Transform.rotate(
+      angle: 90 * math.pi / 180,
+      child: AspectRatio(
+        aspectRatio: 2.4,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12, right: 24),
+          child: LineChart(
+            LineChartData(
+              lineTouchData: LineTouchData(enabled: false),
+              lineBarsData: [
+                LineChartBarData(
+                  spots: const [
+                    FlSpot(0, 4),
+                    FlSpot(1, 3.5),
+                    FlSpot(2, 4.5),
+                    FlSpot(3, 1),
+                    FlSpot(4, 4),
+                    FlSpot(5, 6),
+                    FlSpot(6, 6.5),
+                    FlSpot(7, 6),
+                    FlSpot(8, 4),
+                    FlSpot(9, 6),
+                    FlSpot(10, 6),
+                    FlSpot(11, 7),
+                  ],
+                  isCurved: true,
+                  barWidth: 8,
+                  color: Colors.purpleAccent,
+                  belowBarData: BarAreaData(
+                    show: true,
+                    color: Colors.deepPurple.withOpacity(0.4),
+                    cutOffY: cutOffYValue,
+                    applyCutOffY: true,
+                  ),
+                  aboveBarData: BarAreaData(
+                    show: true,
+                    color: Colors.orange.withOpacity(0.6),
+                    cutOffY: cutOffYValue,
+                    applyCutOffY: true,
+                  ),
+                  dotData: FlDotData(
+                    show: false,
+                  ),
+                ),
+              ],
+              minY: 0,
+              titlesData: FlTitlesData(
+                show: true,
+                topTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                rightTitles: AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+              ),
+              gridData: FlGridData(
+                show: true,
+                drawVerticalLine: false,
+                horizontalInterval: 1,
+                checkToShowHorizontalLine: (double value) {
+                  return value == 1 || value == 6 || value == 4 || value == 5;
+                },
+              ),
+            ),
           ),
         ),
       ),
