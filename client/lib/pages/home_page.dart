@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
-
+import 'package:http/http.dart' as http;
 import 'package:timelines/timelines.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,7 +41,16 @@ class HomePage extends StatelessWidget {
                 },
                 child: const Text('URL')),
             Container(width: 25),
-            InkWell(onTap: () {}, child: const Text('PDF'))
+            InkWell(onTap: () {
+              showDialog(context: context, builder: (BuildContext context){
+                return AlertDialog(
+                  backgroundColor: Color.fromRGBO(36, 39, 49, 1),
+                  title:  Text("Coming Soon", style: TextStyle(color: Colors.white),),
+                  content: Text("Annalysising PDF File", style: TextStyle(color: Colors.white)),
+                );
+              });
+
+            }, child: const Text('PDF'))
           ],
         ),
         actions: [
@@ -312,12 +323,28 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    urlController.text = 'https://www.nature.com/articles/s41467-022-29811-6#Abs1';
+    urlController.text = '';
     super.onInit();
   }
 
   submit() async {
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse('http://15.165.39.55/api/v3/appVersion.php'));
+    request.body = json.encode({
+      "url": urlController.text
+    });
+    request.headers.addAll(headers);
 
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+      print(response.reasonPhrase);
+    }
 
   }
 
