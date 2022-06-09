@@ -331,7 +331,7 @@ class HomeController extends GetxController {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('POST', Uri.parse('http://15.165.39.55/api/v3/appVersion.php'));
+    var request = http.Request('POST', Uri.parse('http://'));
     request.body = json.encode({
       "url": urlController.text
     });
