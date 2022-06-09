@@ -1,14 +1,15 @@
-import uvicorn
 from fastapi import FastAPI
+from pydantic import BaseModel
+
+
+class Item(BaseModel):
+    name: str
+    price: float
 
 
 app = FastAPI()
 
 
-@app.get("/")
-def hello():
-    return "Hello, World!"
-
-
-if __name__ == "__main__":
-    uvicorn.run("test:app", reload=True)
+@app.post("/items/")
+async def create_item(item: Item):
+    return item
