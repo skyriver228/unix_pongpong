@@ -1,7 +1,7 @@
 from ast import keyword
 from bs4 import BeautifulSoup as BS
 import requests as req
-
+from datetime import date
 from rake_nltk import Rake
 import uvicorn
 from fastapi import FastAPI
@@ -74,6 +74,7 @@ def analysis(selected_keywords:SelectedKeywords):
     result["url"] = selected_keywords.url
     result["keywords"] = keyword_count
     result["article"] = selected_keywords.article
+    result["date"] = date.today().isoformat()
     return result
     
 
