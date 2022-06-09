@@ -3,9 +3,9 @@ import 'package:client/pages/Login/login_controller/email_format_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginContoller extends GetxController {
-  final isEmailValid = true.obs;
-  final isPwdValid = true.obs;
+class LoginController extends GetxController {
+  final isEmailValid = false.obs;
+  final isPwdValid = false.obs;
   final emailWarning = ''.obs;
   final pwdWarning = ''.obs;
 
@@ -32,13 +32,6 @@ class LoginContoller extends GetxController {
 
     if (pwdController.text.length < 8) {
       pwdWarning.value = '8자리 이상의 비밀번호를 입력해주세요';
-      isPwdValid.value = false;
-
-      return;
-    }
-
-    if (pwdController.text.isNotEmpty != pwdController.text.trim()) {
-      pwdWarning.value = '비밀번호가 일치하지 않습니다';
       isPwdValid.value = false;
 
       return;

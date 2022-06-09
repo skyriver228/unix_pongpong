@@ -7,7 +7,7 @@ class LoginViewPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginContoller contoller = Get.put(LoginContoller());
+    final LoginController contoller = Get.put(LoginController());
     // final googleLoginController = Get.put(GoogleLoginController());
     // final kakaoLoginController = Get.put(KakaoLoginController());
     return DefaultTextHeightBehavior(
@@ -51,7 +51,7 @@ class LoginViewPage2 extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: const Color(0xFF242731)),
                           width: 300,
-                          height: 270,
+                          height: 260,
                           child: Center(
                             child: Column(
                               children: [
@@ -105,7 +105,7 @@ class LoginViewPage2 extends StatelessWidget {
                                 Opacity(
                                   opacity: 0.1,
                                   child: Container(
-                                    margin: const EdgeInsets.only(top: 20, bottom: 20),
+                                    margin: const EdgeInsets.only(top: 20, bottom: 5),
                                     width: 240,
                                     height: 2,
                                     color: const Color(0xFFE4E4E4),
@@ -115,8 +115,22 @@ class LoginViewPage2 extends StatelessWidget {
                                   width: 270,
                                   height: 40,
                                   child: InkWell(
-                                    onTap: () {},
-                                    child: Image.network('https://www.figma.com/file/gNznrSMLdDRU0qhggi3DFM/Project_UNIX)-Draft?node-id=4%3A15150'),
+                                    onTap: () {}, // 로그인후 진입할곳
+                                    child: Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xFF6C5DD3),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6),
+                                        child: Text(
+                                          'Log in',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontFamily: 'Poppins', color: Color(0xFFFAFAFB), fontWeight: FontWeight.w600, fontSize: 14),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],
