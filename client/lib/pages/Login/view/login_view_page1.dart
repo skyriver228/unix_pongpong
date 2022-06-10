@@ -7,7 +7,7 @@ class LoginViewPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LoginContoller contoller = Get.put(LoginContoller());
+    final LoginController contoller = Get.put(LoginController());
     // final googleLoginController = Get.put(GoogleLoginController());
     // final kakaoLoginController = Get.put(KakaoLoginController());
     return DefaultTextHeightBehavior(
@@ -67,11 +67,12 @@ class LoginViewPage1 extends StatelessWidget {
                                     decoration: BoxDecoration(color: const Color(0xFF42424A), borderRadius: BorderRadius.circular(20)),
                                     width: 260,
                                     height: 38,
-                                    child: const TextField(
+                                    child: TextField(
+                                      controller: contoller.emailController,
                                       textAlign: TextAlign.start,
                                       keyboardType: TextInputType.emailAddress,
-                                      style: TextStyle(fontFamily: 'Roboto', color: Color(0xFF92929D), fontWeight: FontWeight.w600, fontSize: 14),
-                                      decoration: InputDecoration(
+                                      style: const TextStyle(fontFamily: 'Roboto', color: Color(0xFF92929D), fontWeight: FontWeight.w600, fontSize: 14),
+                                      decoration: const InputDecoration(
                                           fillColor: Colors.transparent,
                                           filled: true,
                                           border: InputBorder.none,
@@ -107,12 +108,13 @@ class LoginViewPage1 extends StatelessWidget {
                                     decoration: BoxDecoration(color: const Color(0xFF42424A), borderRadius: BorderRadius.circular(20)),
                                     width: 260,
                                     height: 38,
-                                    child: const TextField(
+                                    child: TextField(
                                       obscureText: true,
+                                      controller: contoller.pwdController,
                                       textAlign: TextAlign.start,
                                       keyboardType: TextInputType.emailAddress,
-                                      style: TextStyle(fontFamily: 'Roboto', color: Color(0xFF92929D), fontWeight: FontWeight.w600, fontSize: 14),
-                                      decoration: InputDecoration(
+                                      style: const TextStyle(fontFamily: 'Roboto', color: Color(0xFF92929D), fontWeight: FontWeight.w600, fontSize: 14),
+                                      decoration: const InputDecoration(
                                           fillColor: Colors.transparent,
                                           filled: true,
                                           border: InputBorder.none,
@@ -144,9 +146,25 @@ class LoginViewPage1 extends StatelessWidget {
                                   height: 40,
                                   child: InkWell(
                                     onTap: () {
-                                      Get.toNamed('/login-page2');
+                                      if (contoller.verifyStep()) {
+                                        Get.toNamed('/login-page2');
+                                      }
                                     },
-                                    child: Image.network('https://www.figma.com/file/gNznrSMLdDRU0qhggi3DFM/Project_UNIX)-Draft?node-id=4%3A15150'),
+                                    child: Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: const Color(0xFF6C5DD3),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6),
+                                        child: Text(
+                                          'Register',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontFamily: 'Poppins', color: Color(0xFFFAFAFB), fontWeight: FontWeight.w600, fontSize: 14),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
@@ -157,11 +175,31 @@ class LoginViewPage1 extends StatelessWidget {
                                     decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
                                         color: Color(0xFF42424A)),
-                                    child: const Center(
-                                      child: Text(
-                                        'Already have an Draft account? Log in',
-                                        style: TextStyle(fontFamily: 'Roboto', color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12),
-                                        textAlign: TextAlign.center,
+                                    child: Center(
+                                      child: Row(
+                                        children: [
+                                          const SizedBox(
+                                            width: 50,
+                                          ),
+                                          const Text(
+                                            'Already have an Draft account? ',
+                                            style: TextStyle(fontFamily: 'Roboto', color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                Get.toNamed('/login-page2');
+                                              },
+                                              child: const Text(
+                                                'log in',
+                                                style: TextStyle(
+                                                    fontFamily: 'Roboto',
+                                                    color: Colors.blue,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 12,
+                                                    decoration: TextDecoration.underline),
+                                              )),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -181,4 +219,33 @@ class LoginViewPage1 extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget button({required LoginController controller, required String text, required bool IF}) {
+  return SizedBox(
+    width: 270,
+    height: 40,
+    child: InkWell(
+      onTap: () {
+        if (IF) {
+          Get.toNamed('/login-page2');
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: const Color(0xFF6C5DD3),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(6),
+          child: Text(
+            'Register',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontFamily: 'Poppins', color: Color(0xFFFAFAFB), fontWeight: FontWeight.w600, fontSize: 14),
+          ),
+        ),
+      ),
+    ),
+  );
 }
