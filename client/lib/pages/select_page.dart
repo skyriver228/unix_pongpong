@@ -1,18 +1,19 @@
-import 'dart:convert';
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
-import 'package:http/http.dart' as http;
 import 'package:timelines/timelines.dart';
+import 'dart:math' as math;
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+import 'package:client/pages/home_page.dart';
+
+
+
+
+class SelectKeywordPage extends StatelessWidget {
+  const SelectKeywordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(HomeController());
 
     return Scaffold(
       appBar: AppBar(
@@ -79,62 +80,58 @@ class HomePage extends StatelessWidget {
               child: Container(
                   color: const Color.fromRGBO(36, 39, 49, 1),
                   child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 30, top: 100, bottom: 300),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.network(
-                              'https://s3-alpha-sig.figma.com/img/145b/c5ce/f866d893d9962f9710e6814087275930?Expires=1655683200&Signature=Li61LIKplDYsNWH1d1TNo71G2-n-581XwLA9WL8~JQ9YXOzyf7jY8AazTFWyjJa5NgHrLbTLAQDPOC5-iNHDsfGnMf4AaFC0MnP2jiWmConKOg0PiniwjXUPPCLneM697utEy-rlzhiv6JNW5TVybbcIkG-Ryl4WFRKxo18NPTcCpHX684PfI~xgRsUg0CVd84hOJXbtYD1fp0s0LPDIDEKu5a29oJzM7bTfogCzCKlGToca-IrqY-C2RfhwsVNZnQuB3-ZE~uf7wE7OaUHH428mokyFotWozVNrQBfZEd8o3JFB6G-czap-0wFvuTfc0fJAhICb4Idn-S5o-S8WnQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                          const Text('Input url for annalysis', style: TextStyle(fontSize: 36.0, color: Colors.white)),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 800,
-                          height: 40,
-                          child: TextField(
-                            controller: c.urlController,
-                            style: const TextStyle(color: Colors.white),
-                            cursorColor: Colors.white,
-                            decoration: InputDecoration(
-                                prefixIcon: Image.network(
-                                    'https://s3-alpha-sig.figma.com/img/862a/978f/e8862e8ba14275ceafb493e7ec00aa61?Expires=1655683200&Signature=c~-03z3VsMLk78P0cY3tmslVc1fhrcgjS1kJ7GtBkKeSfZnu~AMYgxhpz7cPC50tUU6T1yhL-EsQS~DuADcesZSfQiL75PNeh4eXnrmQLq1CEStFyEsL8a-Pj7TLYhu3-NMxefHZLUYEojD~0w9903rn9idFZuHdoqO171~~qIvzm49STmahpAlW7sS2UMwqZYtJD531y-WtzBwmNMK8l3xsTv4066tvgvV8x~2UJRjy9a4hgRt3Upp1P7UbXnOQ7n0e67H5uDalH882rt-EdbDVvL7OYwoPv3cOlGhmvf9oRuN6hvQPLg5R1uf2jnoJ008yL0RoPL0aNt2LSZeVRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                                hintText: "Input link here",
-                                suffixIcon: SizedBox(
-                                  width: 100,
-                                  height: 40,
-                                  child: InkWell(
-                                    onTap: () {
-                                      c.submit();
-                                    },
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 30, top: 100, bottom: 300),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Image.network(
+                                      'https://s3-alpha-sig.figma.com/img/1830/ae4a/c2323737a21a1610947dbaf34c2cfba2?Expires=1656288000&Signature=CWAVvE1yyZ1n6~C-SdrpfziQT~WzPne1hTPwnZIO3YwxWe-OOd1VzRv3HgRpQKIYcKio32RQSVPMDqWp4LMvD~7FG7JBJSM~pB3j~3eiWPm6tG4XKUZNlai7wUu3wFWvZ9h7QIpWY4VgLMXK2rNo9Badz-2qKrslvsr5F-0XdvTFPZKdWSwtHprusnYQVNKJ0aXmPftnStXtlnG4C1aCwsqFruqJkKgzxaVP12eiGxl07Ubqu3yXYm4~7cNjr07heW~n4eDDKQJDaJEMbqk0Vv0RWPm7OWEvR9jX11PUHQNVkZ-nq~12M5YGLHuddoWubVD0LxO-xokyUOu6wytG9Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+
+                                  const SizedBox(width: 20),
+                                  const Text('Select Keywords',
+                                      style: TextStyle(
+                                          fontSize: 36.0, color: Colors.white)),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  GestureDetector(
                                     child: Image.network(
-                                        'https://s3-alpha-sig.figma.com/img/97be/86ea/0d749f1a9b9f08a43ba6d0ef55e600a0?Expires=1655683200&Signature=U6ti-AlDCJi2709Fe3tm5WSh-fOQEriFxmqIjteyYjGF2QJTYu-c9aLspi7r2TJ1ul~8GR0C6Y2BVIdtC3n14bcq0AOd21CIqBIOiVGSLN8l7RqKH8o68pK1DPztp~ROwp4yllwTC2EzAhsTIygPdmPYDv1Hx5Ovp14Y6FOne7S02d4jmkn6iu0IKYxerMog5iWkcUkck~EylfW-aFolgAdbG4zYtpLN16jWPar2JQD4bjqNS7XhHAOo9G~EZCcdmoPHbcqyhOYt5OF4nc1gBj9-Kd6Vb6HiGwz~Rkuyfa0LpFZoU77ZgIBh3yFJ9AtFPUhsFlD8jDCJQ6~0QUg9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                        'https://s3-alpha-sig.figma.com/img/b080/c59b/2fb3b4144fb8b56686b7a7fd38ff646f?Expires=1656288000&Signature=Pd23B5ObhGew-aYp5-p8B12B2VLcOAqAHWhDO09EPQdxQWcfPrEEjRbkeOvfJqBOzlxgcIrJGOs5QodjFObZk7rJM4zWxJfnH5T0kUxZIdCjQoBsFe2bEd1Ha-hC5iJRY1q2orFY54iOZRUM72OTXaeLNR1iiJILXeJRMvnTpyPQGJYnnLUQLiGMolWkNEZ7YViLm1LRPW4nw0JRvvd7y7MKdGLSAgH7D-wKf1QYyQrgz648IfGnRhbUfgJB57OBWduA7xdk6eJXFpHVJ-NTWIIW5M8XRQ3WJuxnQpPz0zNdMqi2C9FmKxKBxkDKEEEX4Cx8YXfvtqWX4YATt~bm9w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                    onTap: () {
+                                      Get.offAll(const HomePage());
+
+                                    },
                                   ),
-                                ),
-                                hintStyle: const TextStyle(fontSize: 20.0, color: Colors.white),
-                                filled: true,
-                                fillColor: const Color.fromRGBO(36, 39, 49, 0.7),
-                                hoverColor: const Color.fromRGBO(36, 39, 49, 0.7),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15),
-                                  borderSide: BorderSide.none,
-                                )),
+                                  const SizedBox(width: 20),
+
+                                  GestureDetector(
+                                    child: Image.network(
+                                        'https://s3-alpha-sig.figma.com/img/6c37/be72/8cb7385b773f4a6bf164be404141849b?Expires=1656288000&Signature=fpBREIctpnBtE6FbgLjU8RFt0OAsvklSSlgFaIZfTSEExv0aKPi46pVooMH2hNGpjbde73YO6H5~Ed-ml3E-oH7RmLb7CUrqKzCg-AYM4zM0Z6hOPwb3zNWoVr~SryqYiVEYvSHzxOyYXk0LYd5uqUD2eraJwdQLfrkN8wCGJ6xyzFfSrq-Vev2YyzH8WkG89AYlX6rUChoI59GEJIKHC3kr8KV9Z~f5TidBHCKftCPRB2bTob91~7Cr1xQ4qWay97hnnGCFxQy74wG0FOkSmnACI~GOCHURZS-dG3IRO7IqDcqZhGE3tEzfHeg2fet7Sp1GLDFsD2rGPJPN9Ucq2Q__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                    onTap: () {
+                                      Get.toNamed('/analysis-page');
+                                    },
+
+                                  ),
+                                  const SizedBox(width: 20),
+
+                                ],
+                              ),
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                    // Container(
-                    //   child: const LineChartSample4(),
-                    // )
-                  ])),
+                        ),
+                        // Container(
+                        //   child: const LineChartSample4(),
+                        // )
+                      ])),
             )
           ],
         ),
@@ -269,7 +266,7 @@ class _Timeline1 extends StatelessWidget {
           connectorBuilder: (_, index, __) {
             if (index == 0) {
               return DashedLineConnector(color: Color.fromRGBO(152, 142, 207, 1),
-            );
+              );
             } else {
               return DashedLineConnector();
             }
@@ -278,8 +275,8 @@ class _Timeline1 extends StatelessWidget {
             switch (data[index]) {
               case _TimelineStatus.inputLink:
                 return DotIndicator(
-                  color: Color.fromRGBO(152, 142, 207, 1),
-                  child: Center(child: Text('1',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
+                    color: Color.fromRGBO(152, 142, 207, 1),
+                    child: Center(child: Text('1',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
                 );
               case _TimelineStatus.selectKeyword:
                 return DotIndicator(
@@ -303,43 +300,3 @@ class _Timeline1 extends StatelessWidget {
 }
 
 const kTileHeight = 100.0;
-
-
-class HomeController extends GetxController {
-  final urlController = TextEditingController();
-
-  @override
-  void onInit() {
-    urlController.text = '';
-    super.onInit();
-  }
-
-  submit() async {
-    Get.toNamed('/select-page');
-
-    var headers = {
-      'Content-Type': 'application/json'
-    };
-    var request = http.Request('POST', Uri.parse('http://'));
-    request.body = json.encode({
-      "url": urlController.text
-    });
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-    }
-    else {
-      print(response.reasonPhrase);
-    }
-
-  }
-
-  @override
-  void onClose() {
-    urlController.dispose();
-    super.onClose();
-  }
-}
