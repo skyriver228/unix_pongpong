@@ -41,18 +41,23 @@ def input_url(url:Url):
             
             article[content_title] = content
 
-        r = Rake(max_length=1)
-        r.extract_keywords_from_text(article["Abstract"])
-        keywords = r.get_ranked_phrases()[:5]
+        full_article_str = ""
+        for k,v in article.items():
+            full_article_str += k+ "\n\n" + v + "\n"
 
+        r = Rake(max_length=1)
         article_str = ""
         for k,v in article.items():
+            if k == "References":
+                break
             article_str += k+ "\n\n" + v + "\n"
+        r.extract_keywords_from_text(article_str)
+        keywords = r.get_ranked_phrases()[:5]
 
         result = {}
         result["url"] = url
         result["keywords"] = keywords
-        result["article"] = article_str
+        result["article"] = full_article_str
 
         return result
     result = getting_keyword(url.url)
