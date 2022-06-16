@@ -1,17 +1,11 @@
-# 
-FROM python:3.9
+FROM python:latest
 
-# 
-WORKDIR /code
+COPY ./api /fastapi_main
 
-# 
-COPY ./requirements.txt /code/requirements.txt
+WORKDIR /api
 
-# 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install -r requirements.txt
 
-# 
-COPY ./app /code/app
+EXPOSE 8080
 
-# 
-CMD ["uvicorn", "flow:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "flow:app", "--host", "0.0.0.0", "--port", "8080"]
