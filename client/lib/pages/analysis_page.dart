@@ -1,14 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:highlight_text/highlight_text.dart';
 import 'package:timelines/timelines.dart';
 import 'dart:math' as math;
 
 import 'package:client/pages/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-
-
 
 class AnalysisPage extends StatelessWidget {
   const AnalysisPage({Key? key}) : super(key: key);
@@ -16,6 +14,58 @@ class AnalysisPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.put(AnalysisController());
+    Map<String, HighlightedWord> words = {
+      "substances": HighlightedWord(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AlertDialog(
+                  backgroundColor: Color.fromRGBO(36, 39, 49, 1),
+                  title: Center(
+                    child: Text(
+                      "HighLight",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+
+                );
+              });
+        },
+        textStyle: const TextStyle(
+            fontSize: 30,
+            color: Colors.white,
+            backgroundColor: Color.fromRGBO(108, 93, 211, 1)),
+      ),
+      "solid": HighlightedWord(
+        onTap: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return const AlertDialog(
+                  backgroundColor: Color.fromRGBO(36, 39, 49, 1),
+                  title: Center(
+                    child: Text(
+                      "HighLight",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+
+                );
+              });
+        },
+        textStyle: const TextStyle(
+            fontSize: 30,
+            color: Colors.white,
+            backgroundColor: Color.fromRGBO(255, 117, 76, 1)),
+      ),
+      "small": HighlightedWord(
+        onTap: () {
+          print("small");
+        },
+        textStyle: const TextStyle(fontSize: 30, color: Colors.white),
+      ),
+    };
 
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +96,7 @@ class AnalysisPage extends StatelessWidget {
             Container(width: 25),
             InkWell(onTap: () {
               showDialog(context: context, builder: (BuildContext context){
-                return AlertDialog(
+                return const AlertDialog(
                   backgroundColor: Color.fromRGBO(36, 39, 49, 1),
                   title:  Text("Coming Soon", style: TextStyle(color: Colors.white),),
                   content: Text("Annalysising PDF File", style: TextStyle(color: Colors.white)),
@@ -113,13 +163,12 @@ class AnalysisPage extends StatelessWidget {
                                       },
                                     ),
                                     const SizedBox(width: 20),
-
                                     GestureDetector(
                                       child: Image.network(
                                           'https://s3-alpha-sig.figma.com/img/0f44/cb2f/39ce98d0a84717ad394bd31d1073c891?Expires=1656288000&Signature=Q8v0PgGYLcH39hToNSdh-CCuTWTeoB0hewYe9w6p3M0UwIdof0lNUrssIXxAeR42kKBEEBt87sF15SksP9PyzVgxed2e479M1cLHOKKT5wHFNLut9qCKTkvupsnlyNmyrxzZEGAr4~Kkc-z9b4fpX~ps-3tQAds~ujX98EG5I-sB~h0JsdTtOoB~lv92bf6DyYCOXWqXqVIpsohu8Qd7nDGviy-95Z52kyD62NnxkHkyDW8CkgoG1Vvom5MqZ5fQ3y~btMt3oUpV9tIsO3qTRLRrUQCGbH1WOMJSR3goGObruSf9huQKdNvzFsS74~OL5358AOuP4dlC6YD9Pg4n2w__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
                                       onTap: () {
                                         showDialog(context: context, builder: (BuildContext context){
-                                          return AlertDialog(
+                                          return const AlertDialog(
                                             backgroundColor: Color.fromRGBO(36, 39, 49, 1),
                                                 title: Text(
                                                   "Finished",
@@ -144,20 +193,23 @@ class AnalysisPage extends StatelessWidget {
                           const SizedBox(height: 20),
                           Row(
                             children: [
-                              SizedBox(
-                                child: TextField(
-                                  controller: c.controller,
-                                  maxLength: 1000,
-                                  maxLines: 1000,
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                              Container(
                                 height: MediaQuery.of(context).size.height,
-                                width: 1000,
+                                width: 800,
+                                margin: const EdgeInsets.only(left: 40),
+                                child: TextHighlight(
+                                  textStyle: const TextStyle(fontSize: 30, color: Colors.white),
+                                    text: c.controller.text,
+                                    words: words,
+                                    matchCase:
+                                        true // will highlight only exactly the same string
+                                    ),
                               ),
-                              const SizedBox(
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 500),
                                 height: 100,
-                                width: 350,
-                                child: LineChartSample4(),
+                                width: 500,
+                                child: const _LineChart(),
                               )
                             ],
                           )
@@ -171,12 +223,11 @@ class AnalysisPage extends StatelessWidget {
   }
 }
 
-class LineChartSample4 extends StatelessWidget {
-  const LineChartSample4({Key? key}) : super(key: key);
+class _LineChart extends StatelessWidget {
+  const _LineChart({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     const cutOffYValue = 5.0;
-
     return Transform.rotate(
       angle: 90 * math.pi / 180,
       child: AspectRatio(
@@ -267,23 +318,23 @@ class _Timeline1 extends StatelessWidget {
       child: Timeline.tileBuilder(
         theme: TimelineThemeData(
           nodePosition: 0,
-          connectorTheme: ConnectorThemeData(
+          connectorTheme: const ConnectorThemeData(
             thickness: 4.0,
             color: Color(0xffd3d3d3),
           ),
-          indicatorTheme: IndicatorThemeData(
+          indicatorTheme: const IndicatorThemeData(
             size: 40.0,
           ),
         ),
-        padding: EdgeInsets.symmetric(vertical: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
         builder: TimelineTileBuilder.connected(
           contentsBuilder: (context, index) {
             if(index == 0){
-              return Center(child: Text('Input url link', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+              return const Center(child: Text('Input url link', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
             } else if(index == 1) {
-              return Center(child: Text('select keywords', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+              return const Center(child: Text('select keywords', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
             } else{
-              return Center(child: Text('analysis',  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+              return Center(child: const Text('analysis',  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
             }
           },
           connectorBuilder: (_, index, __) {
@@ -296,25 +347,23 @@ class _Timeline1 extends StatelessWidget {
           indicatorBuilder: (_, index) {
             switch (data[index]) {
               case _TimelineStatus.inputLink:
-                return DotIndicator(
+                return const DotIndicator(
                     color: Color.fromRGBO(152, 142, 207, 1),
                     child: Center(child: Text('1',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
                 );
               case _TimelineStatus.selectKeyword:
-                return DotIndicator(
+                return const DotIndicator(
                     color: Color.fromRGBO(152, 142, 207, 1),
                     child: Center(child: Text('2', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
                 );
               case _TimelineStatus.analysis:
-                return DotIndicator(
+                return const DotIndicator(
                     color: Color.fromRGBO(152, 142, 207, 1),
-                    child: Center(child: Text('3',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
-                );
+                    child: Center(child: Text('3',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold))));
             }
           },
           itemExtentBuilder: (_, __) => kTileHeight,
           itemCount: data.length,
-
         ),
       ),
     );
@@ -328,7 +377,8 @@ class AnalysisController extends GetxController {
 
   @override
   void onInit() {
-    controller.text = 'Solution-processable microporous polymer platform for heterogenization of diverse photoredox catalysts\n AbstractIn contemporary organic synthesis, substances that access strongly oxidizing and/or reducing states upon irradiation have been exploited to facilitate powerful and unprecedented transformations. However, the implementation of light-driven reactions in large-scale processes remains uncommon, limited by the lack of general technologies for the immobilization, separation, and reuse of these diverse catalysts. Here, we report a new class of photoactive organicpolymers that combine the flexibility of small-molecule dyes with the operational advantages and ';
+    controller.text =
+        'Solution-processable microporous polymer platform for heterogenization of diverse photoredox catalysts\n AbstractIn contemporary organic synthesis, substances that access strongly oxidizing and/or reducing states upon irradiation have been exploited to facilitate powerful and unprecedented transformations. However, the implementation of light-driven reactions in large-scale processes remains uncommon, solid limited by the lack of general technologies for the immobilization, separation, and reuse of these diverse catalysts. Here, we report a new class of photoactive organicpolymers that combine the flexibility of small-molecule dyes with the operational advantages and ';
     super.onInit();
   }
 
@@ -344,4 +394,3 @@ void _launchUrl() async {
 }
 
 final Uri _url = Uri.parse('https://github.com/skyriver228/unix_pongpong');
-

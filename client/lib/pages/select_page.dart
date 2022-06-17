@@ -1,20 +1,16 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timelines/timelines.dart';
-import 'dart:math' as math;
 
 import 'package:client/pages/home_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-
-
 
 class SelectKeywordPage extends StatelessWidget {
   const SelectKeywordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(Controller());
 
     return Scaffold(
       appBar: AppBar(
@@ -86,7 +82,7 @@ class SelectKeywordPage extends StatelessWidget {
                       children: [
                         Container(
                           margin:
-                              EdgeInsets.only(left: 30, top: 100, bottom: 300),
+                              EdgeInsets.only(left: 30, top: 100, bottom: 100),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,16 +118,51 @@ class SelectKeywordPage extends StatelessWidget {
                                     },
 
                                   ),
-                                  const SizedBox(width: 20),
+
+
+
 
                                 ],
                               ),
                             ],
                           ),
                         ),
-                        // Container(
-                        //   child: const LineChartSample4(),
-                        // )
+                          Container(
+                            color: const Color.fromRGBO(36, 39, 49, 1),
+                            width: 500,
+                            height: 500,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text('Select 3 Keywords', style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold)),
+                                Container(margin: const EdgeInsets.only(left: 30, right: 30), child: const Divider(thickness: 2, color: Color.fromRGBO(228, 228, 228, 0.1),)),
+                                SizedBox(
+                                  width: 300,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: controller.categories.length,
+
+                                    itemBuilder: (BuildContext context, int index) {
+                                      return CheckboxListTile(
+                                        tileColor: Colors.white,
+                                        checkColor: Colors.white,
+                                        controlAffinity: ListTileControlAffinity.leading,
+                                        value: controller.selectedCategories
+                                            .contains(controller.categories[index]),
+                                        onChanged: (bool? selected) => controller
+                                            .toggle(controller.categories[index]),
+                                        title: KeywordWidget(
+                                            keyword: controller.categories[index]),
+                                      );
+                                    },
+                                  ),
+                                )
+
+                              ],
+                            ),
+                          )
+
                       ])),
             )
           ],
@@ -140,91 +171,6 @@ class SelectKeywordPage extends StatelessWidget {
     );
   }
 }
-
-class LineChartSample4 extends StatelessWidget {
-  const LineChartSample4({Key? key}) : super(key: key);
-
-  static const _dateTextStyle = TextStyle(
-    fontSize: 10,
-    color: Colors.purple,
-    fontWeight: FontWeight.bold,
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    const cutOffYValue = 5.0;
-
-    return Transform.rotate(
-      angle: 90 * math.pi / 180,
-      child: AspectRatio(
-        aspectRatio: 2.4,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 24),
-          child: LineChart(
-            LineChartData(
-              lineTouchData: LineTouchData(enabled: false),
-              lineBarsData: [
-                LineChartBarData(
-                  spots: const [
-                    FlSpot(0, 4),
-                    FlSpot(1, 3.5),
-                    FlSpot(2, 4.5),
-                    FlSpot(3, 1),
-                    FlSpot(4, 4),
-                    FlSpot(5, 6),
-                    FlSpot(6, 6.5),
-                    FlSpot(7, 6),
-                    FlSpot(8, 4),
-                    FlSpot(9, 6),
-                    FlSpot(10, 6),
-                    FlSpot(11, 7),
-                  ],
-                  isCurved: true,
-                  barWidth: 8,
-                  color: Colors.purpleAccent,
-                  belowBarData: BarAreaData(
-                    show: true,
-                    color: Colors.deepPurple.withOpacity(0.4),
-                    cutOffY: cutOffYValue,
-                    applyCutOffY: true,
-                  ),
-                  aboveBarData: BarAreaData(
-                    show: true,
-                    color: Colors.orange.withOpacity(0.6),
-                    cutOffY: cutOffYValue,
-                    applyCutOffY: true,
-                  ),
-                  dotData: FlDotData(
-                    show: false,
-                  ),
-                ),
-              ],
-              minY: 0,
-              titlesData: FlTitlesData(
-                show: true,
-                topTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: false),
-                ),
-                rightTitles: AxisTitles(
-                  sideTitles: SideTitles(showTitles: false),
-                ),
-              ),
-              gridData: FlGridData(
-                show: true,
-                drawVerticalLine: false,
-                horizontalInterval: 1,
-                checkToShowHorizontalLine: (double value) {
-                  return value == 1 || value == 6 || value == 4 || value == 5;
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
 enum _TimelineStatus {
   inputLink,
@@ -308,3 +254,42 @@ void _launchUrl() async {
 
 final Uri _url = Uri.parse('https://github.com/skyriver228/unix_pongpong');
 
+class Controller extends GetxController {
+  final _categories = {
+    Keyword("substances"): true,
+    Keyword("solubility"): false,
+    Keyword("solid"): false,
+    Keyword("small"): false,
+    Keyword("Direct input"): false,
+  };
+
+  void toggle(Keyword item) {
+    _categories[item] = !(_categories[item] ?? true);
+    update();
+  }
+
+  get selectedCategories =>
+      _categories.entries.where((e) => e.value).map((e) => e.key).toList();
+
+  get categories => _categories.entries.map((e) => e.key).toList();
+}
+
+class Keyword {
+  final String name;
+
+  Keyword(this.name);
+}
+
+class KeywordWidget extends StatelessWidget {
+  final Keyword keyword;
+
+  const KeywordWidget({Key? key, required this.keyword}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      keyword.name,
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+    );
+  }
+}
