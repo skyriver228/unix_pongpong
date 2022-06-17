@@ -2,7 +2,7 @@
 
 # <img src="./readme_source/Layers.png" width="40px" /> Draft: AI based Keyword density analysis
 
-Draft는 AI와 키워드 밀도 분석을 기반으로 논문(nature comunication 한정)을 분석해주는 툴로 사용자가 읽어야 하는 부분에 대한 우선순위 선정에 도움을 주는 웹 서비스 입니다.
+Draft는 AI와 키워드 밀도 분석을 기반으로 논문([nature communication](https://www.nature.com/ncomms/articles) 한정)을 분석해주는 툴로 사용자가 읽어야 하는 부분에 대한 우선순위 선정에 도움을 주는 웹 서비스 입니다.
 
 
 ---
