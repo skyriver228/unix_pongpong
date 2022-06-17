@@ -10,8 +10,8 @@ Draft는 AI와 키워드 밀도 분석을 기반으로 논문(nature comunicatio
 🚨 notice)
  시간 및 서버 상의 이슈(docker설치 불가)로 로컬에서 돌아가던 Api들이 배포되지 못했습니다. 다만 [아래의 부분](https://www.notion.so/Unix_pongponglab-532e775e875e45d98dc9d22e13e0da20)을 통해 실제 url을 기반으로 논문을 분석하는 과정을 mainflow는 코드상에서 테스트 해볼 수 있습니다!
 
-<img width="50%" src="./readme_source/AI_keyword_extraction.gif"/>
-<img width="50%" src="./readme_source/density_graph.gif"/>
+<img width="80%" src="./readme_source/AI_keyword_extraction.gif"/>
+<img width="80%" src="./readme_source/density_graph.gif"/>
 
 
 ## 제작 동기
