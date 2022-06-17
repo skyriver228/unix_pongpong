@@ -1,22 +1,18 @@
 # Unix_pongponglab
 
-# Draft: AI based Keyword density analysis
+# <img src="./readme_source/Layers.png" width="40px" /> Draft: AI based Keyword density analysis
 
-<aside>
-<img src="./readme_source/Layers.png" width="40px" /> Draft는 AI와 키워드 밀도 분석을 기반으로 논문(nature comunication 한정)을 분석해주는 툴로 사용자가 읽어야 하는 부분에 대한 우선순위 선정에 도움을 주는 웹 서비스 입니다.
+Draft는 AI와 키워드 밀도 분석을 기반으로 논문(nature comunication 한정)을 분석해주는 툴로 사용자가 읽어야 하는 부분에 대한 우선순위 선정에 도움을 주는 웹 서비스 입니다.
 
-</aside>
 
 ---
 
-<aside>
-🚨 **notice)** 시간 및 서버 상의 이슈(docker설치 불가)로 로컬에서 돌아가던 Api들이 배포되지 못했습니다. 다만 [아래의 부분](https://www.notion.so/Unix_pongponglab-532e775e875e45d98dc9d22e13e0da20)을 통해 실제 url을 기반으로 논문을 분석하는 과정을 mainflow는 코드상에서 테스트 해볼 수 있습니다!
+🚨 notice)
+ 시간 및 서버 상의 이슈(docker설치 불가)로 로컬에서 돌아가던 Api들이 배포되지 못했습니다. 다만 [아래의 부분](https://www.notion.so/Unix_pongponglab-532e775e875e45d98dc9d22e13e0da20)을 통해 실제 url을 기반으로 논문을 분석하는 과정을 mainflow는 코드상에서 테스트 해볼 수 있습니다!
 
-</aside>
+<img width="50%" src="./readme_source/AI_keyword_extraction.gif"/>
+<img width="50%" src="./readme_source/density_graph.gif"/>
 
-```
-<img width="80%" src="https://user-images.githubusercontent.com/16822641/109461495-913fc480-7aa5-11eb-9d0e-aff762669f98.gif"/>
-```
 
 ## 제작 동기
 
