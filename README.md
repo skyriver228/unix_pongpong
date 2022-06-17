@@ -45,7 +45,7 @@ $ python flow.py
 **[AI 기반 keyword extraction]**
 
 - 분석하고 싶은 논문을 nature communication에서 찾아 url 형태로 입력해줍니다.
-- mainflow 확인의 편의를 위해 article은 **`article.txt`**파일로 추가 저장됩니다.([예시 결과](https://www.notion.so/Unix_pongponglab-532e775e875e45d98dc9d22e13e0da20))
+- mainflow 확인의 편의를 위해 article은 `article.txt`파일로 추가 저장됩니다.([예시결과 / AI 기반 keyword extraction] 참조)
 
 ```markdown
 $ cd fastapi_main
@@ -57,8 +57,7 @@ $ http POST :8000/analysis \
 
 **[keyword density data]**
 
-- **`article.txt`**에서 자동으로 text는 가져오지만 키워드는 사용자가 3개를 제안해야 합니다.
-- [예시결과](https://www.notion.so/Unix_pongponglab-532e775e875e45d98dc9d22e13e0da20))
+- `article.txt`에서 자동으로 text는 가져오지만 키워드는 사용자가 3개를 제안해야 합니다. ([예시결과 / keyword density data] 참조)
 
 ```markdown
 $ cd fastapi_main
