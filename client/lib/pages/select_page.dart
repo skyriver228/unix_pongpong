@@ -186,61 +186,59 @@ class _Timeline1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = _TimelineStatus.values;
-    return Flexible(
-      child: Timeline.tileBuilder(
-        theme: TimelineThemeData(
-          nodePosition: 0,
-          connectorTheme: ConnectorThemeData(
-            thickness: 4.0,
-            color: Color(0xffd3d3d3),
-          ),
-          indicatorTheme: IndicatorThemeData(
-            size: 40.0,
-          ),
+    return Timeline.tileBuilder(
+      theme: TimelineThemeData(
+        nodePosition: 0,
+        connectorTheme: ConnectorThemeData(
+          thickness: 4.0,
+          color: Color(0xffd3d3d3),
         ),
-        padding: EdgeInsets.symmetric(vertical: 20.0),
-        builder: TimelineTileBuilder.connected(
-          contentsBuilder: (context, index) {
-            if(index == 0){
-              return Center(child: Text('Input url link', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+        indicatorTheme: IndicatorThemeData(
+          size: 40.0,
+        ),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 20.0),
+      builder: TimelineTileBuilder.connected(
+        contentsBuilder: (context, index) {
+          if(index == 0){
+            return Center(child: Text('Input url link', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
 
-            } else if(index == 1) {
-              return Center(child: Text('select keywords', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
-            } else{
-              return Center(child: Text('analysis',  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
-            }
-          },
-          connectorBuilder: (_, index, __) {
-            if (index == 0) {
-              return DashedLineConnector(color: Color.fromRGBO(152, 142, 207, 1),
+          } else if(index == 1) {
+            return Center(child: Text('select keywords', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+          } else{
+            return Center(child: Text('analysis',  style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)));
+          }
+        },
+        connectorBuilder: (_, index, __) {
+          if (index == 0) {
+            return DashedLineConnector(color: Color.fromRGBO(152, 142, 207, 1),
+            );
+          } else {
+            return DashedLineConnector();
+          }
+        },
+        indicatorBuilder: (_, index) {
+          switch (data[index]) {
+            case _TimelineStatus.inputLink:
+              return DotIndicator(
+                  color: Color.fromRGBO(152, 142, 207, 1),
+                  child: Center(child: Text('1',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
               );
-            } else {
-              return DashedLineConnector();
-            }
-          },
-          indicatorBuilder: (_, index) {
-            switch (data[index]) {
-              case _TimelineStatus.inputLink:
-                return DotIndicator(
-                    color: Color.fromRGBO(152, 142, 207, 1),
-                    child: Center(child: Text('1',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
-                );
-              case _TimelineStatus.selectKeyword:
-                return DotIndicator(
-                    color: Color.fromRGBO(152, 142, 207, 1),
-                    child: Center(child: Text('2', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
-                );
-              case _TimelineStatus.analysis:
-                return DotIndicator(
-                    color: Color.fromRGBO(152, 142, 207, 1),
-                    child: Center(child: Text('3',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
-                );
-            }
-          },
-          itemExtentBuilder: (_, __) => kTileHeight,
-          itemCount: data.length,
+            case _TimelineStatus.selectKeyword:
+              return DotIndicator(
+                  color: Color.fromRGBO(152, 142, 207, 1),
+                  child: Center(child: Text('2', style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
+              );
+            case _TimelineStatus.analysis:
+              return DotIndicator(
+                  color: Color.fromRGBO(152, 142, 207, 1),
+                  child: Center(child: Text('3',  style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold)))
+              );
+          }
+        },
+        itemExtentBuilder: (_, __) => kTileHeight,
+        itemCount: data.length,
 
-        ),
       ),
     );
   }
