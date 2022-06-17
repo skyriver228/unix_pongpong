@@ -59,6 +59,10 @@ def input_url(url:Url):
         result["keywords"] = keywords
         result["article"] = full_article_str
 
+        f = open("article.txt", 'w')
+        f.write(article_str)
+        f.close()
+
         return result
     result = getting_keyword(url.url)
     return result
