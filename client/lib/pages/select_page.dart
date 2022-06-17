@@ -5,6 +5,7 @@ import 'package:timelines/timelines.dart';
 import 'dart:math' as math;
 
 import 'package:client/pages/home_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 
@@ -57,10 +58,10 @@ class SelectKeywordPage extends StatelessWidget {
         actions: [
           InkWell(
               onTap: () {
-                Get.toNamed('/login-page1');
+                _launchUrl();
               },
               child: Image.network(
-                  'https://s3-alpha-sig.figma.com/img/a47e/9e85/ae926760f4b87dbe7ac58e3ddcaf0e89?Expires=1655683200&Signature=U~7e2NP8Gu5Hmsxuis9ffjlTueppaiOgGT-EempaLORpon1YayZdyaXFbsyN18KIPQkftdIzczHLgSdHmI3p1VzFte~hEoitm9mSRHDU3WvI~xp8hkLKD54tNmoXgKyHXzVcnSz7LtuyDNEumZMvwRDee1PSo1A4hUmYLn9u6Nl~FLoLRTxoUxXkE~JASa3bmIBfvB6tLih9OK1nu0~4VCNjkS-pkfBXHVIa-b991~QEVQA~tqVAM-ffd6TjhojbvI7cSwwvas4Mev8Hk0oufTFO46nwrgfK8hp0ErTt0hw7eoqZRwem0T20SCK7O7yG2Otk6TN-FTe9fYigLRa2jw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'))
+                  'https://s3-alpha-sig.figma.com/img/c4d2/32cd/372d21346309e1c89a7fda2c2dbf2930?Expires=1656288000&Signature=OSkfumZiJWQKDevC598E7sCcQnkiBP9uDYt3wpx8B35TraUlDjIw0~IzKnuKFl2~8kP14sfaNrGxPvCNU9aa1UnoesIOIJ3u0ROqrS~o9sFdSMgEBoodnd9HfpFVElDL-ML9j3P0FIYbJbeFEBcmhgtwzO2tK4Pj0ViRy8JFZfm2MXHItNlwVo4Urcn4ybq8zRyFlurz5tM8Q0m2~Jg~XIoOc-v1QOzVj6vnZsrTfd5pRlNEa5UroCgFuPYj4S2oi6xbzgpzekkOq44Yg-3TMoNh0s-zS3V1pD89csdxy~2Vt8XUWBPMnc6Jfy0jdtsuui-1tQATQNTbk-6gdzjvDw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'))
         ],
       ),
       body: SafeArea(
@@ -300,3 +301,10 @@ class _Timeline1 extends StatelessWidget {
 }
 
 const kTileHeight = 100.0;
+
+void _launchUrl() async {
+  if (!await launchUrl(_url)) throw 'Could not launch $_url';
+}
+
+final Uri _url = Uri.parse('https://github.com/skyriver228/unix_pongpong');
+
