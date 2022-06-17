@@ -11,6 +11,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.put(HomeController());
+    final w = MediaQuery.of(context).size.width;
+    print(w);
 
     return Scaffold(
       appBar: AppBar(
@@ -68,84 +70,80 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Row(
           children: [
-            Expanded(
-              flex: 1,
+            Container(
+              width: 300,
+              color: const Color.fromRGBO(36, 39, 49, 1),
               child: Container(
-                color: const Color.fromRGBO(36, 39, 49, 1),
-                child: Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: _Timeline1()),
-              ),
+                  margin: const EdgeInsets.only(left: 20),
+                  child: _Timeline1()),
             ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                  color: const Color.fromRGBO(36, 39, 49, 1),
-                  child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 30, top: 100, bottom: 300),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                  'https://s3-alpha-sig.figma.com/img/145b/c5ce/f866d893d9962f9710e6814087275930?Expires=1655683200&Signature=Li61LIKplDYsNWH1d1TNo71G2-n-581XwLA9WL8~JQ9YXOzyf7jY8AazTFWyjJa5NgHrLbTLAQDPOC5-iNHDsfGnMf4AaFC0MnP2jiWmConKOg0PiniwjXUPPCLneM697utEy-rlzhiv6JNW5TVybbcIkG-Ryl4WFRKxo18NPTcCpHX684PfI~xgRsUg0CVd84hOJXbtYD1fp0s0LPDIDEKu5a29oJzM7bTfogCzCKlGToca-IrqY-C2RfhwsVNZnQuB3-ZE~uf7wE7OaUHH428mokyFotWozVNrQBfZEd8o3JFB6G-czap-0wFvuTfc0fJAhICb4Idn-S5o-S8WnQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                              const Text('Input url for annalysis',
-                                  style: TextStyle(
-                                      fontSize: 36.0, color: Colors.white)),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+            Container(
+              width: 1428,
+                color: const Color.fromRGBO(36, 39, 49, 1),
+                child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin:
+                            const EdgeInsets.only(left: 30, top: 100, bottom: 300),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width: 800,
-                              height: 40,
-                              child: TextField(
-                                controller: c.urlController,
-                                style: const TextStyle(color: Colors.white),
-                                cursorColor: Colors.white,
-                                decoration: InputDecoration(
-                                    prefixIcon: Image.network(
-                                        'https://s3-alpha-sig.figma.com/img/862a/978f/e8862e8ba14275ceafb493e7ec00aa61?Expires=1655683200&Signature=c~-03z3VsMLk78P0cY3tmslVc1fhrcgjS1kJ7GtBkKeSfZnu~AMYgxhpz7cPC50tUU6T1yhL-EsQS~DuADcesZSfQiL75PNeh4eXnrmQLq1CEStFyEsL8a-Pj7TLYhu3-NMxefHZLUYEojD~0w9903rn9idFZuHdoqO171~~qIvzm49STmahpAlW7sS2UMwqZYtJD531y-WtzBwmNMK8l3xsTv4066tvgvV8x~2UJRjy9a4hgRt3Upp1P7UbXnOQ7n0e67H5uDalH882rt-EdbDVvL7OYwoPv3cOlGhmvf9oRuN6hvQPLg5R1uf2jnoJ008yL0RoPL0aNt2LSZeVRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                                    hintText: "Input link here",
-                                    suffixIcon: SizedBox(
-                                      width: 100,
-                                      height: 40,
-                                      child: InkWell(
-                                        onTap: () {
-                                          c.submit();
-                                        },
-                                        child: Image.network(
-                                            'https://s3-alpha-sig.figma.com/img/97be/86ea/0d749f1a9b9f08a43ba6d0ef55e600a0?Expires=1655683200&Signature=U6ti-AlDCJi2709Fe3tm5WSh-fOQEriFxmqIjteyYjGF2QJTYu-c9aLspi7r2TJ1ul~8GR0C6Y2BVIdtC3n14bcq0AOd21CIqBIOiVGSLN8l7RqKH8o68pK1DPztp~ROwp4yllwTC2EzAhsTIygPdmPYDv1Hx5Ovp14Y6FOne7S02d4jmkn6iu0IKYxerMog5iWkcUkck~EylfW-aFolgAdbG4zYtpLN16jWPar2JQD4bjqNS7XhHAOo9G~EZCcdmoPHbcqyhOYt5OF4nc1gBj9-Kd6Vb6HiGwz~Rkuyfa0LpFZoU77ZgIBh3yFJ9AtFPUhsFlD8jDCJQ6~0QUg9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
-                                      ),
-                                    ),
-                                    hintStyle: const TextStyle(
-                                        fontSize: 20.0, color: Colors.white),
-                                    filled: true,
-                                    fillColor:
-                                        const Color.fromRGBO(36, 39, 49, 0.7),
-                                    hoverColor:
-                                        const Color.fromRGBO(36, 39, 49, 0.7),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide.none,
-                                    )),
-                              ),
-                            )
+                            Image.network(
+                                'https://s3-alpha-sig.figma.com/img/145b/c5ce/f866d893d9962f9710e6814087275930?Expires=1655683200&Signature=Li61LIKplDYsNWH1d1TNo71G2-n-581XwLA9WL8~JQ9YXOzyf7jY8AazTFWyjJa5NgHrLbTLAQDPOC5-iNHDsfGnMf4AaFC0MnP2jiWmConKOg0PiniwjXUPPCLneM697utEy-rlzhiv6JNW5TVybbcIkG-Ryl4WFRKxo18NPTcCpHX684PfI~xgRsUg0CVd84hOJXbtYD1fp0s0LPDIDEKu5a29oJzM7bTfogCzCKlGToca-IrqY-C2RfhwsVNZnQuB3-ZE~uf7wE7OaUHH428mokyFotWozVNrQBfZEd8o3JFB6G-czap-0wFvuTfc0fJAhICb4Idn-S5o-S8WnQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                            const Text('Input url for annalysis',
+                                style: TextStyle(
+                                    fontSize: 36.0, color: Colors.white)),
                           ],
                         ),
-                        Container(
-                            margin: const EdgeInsets.only(top: 50),
-                            child: Image.network(
-                                'https://s3-alpha-sig.figma.com/img/db34/a5f9/d826de7261e27619153b1af1859c7dba?Expires=1656288000&Signature=Qd3ZtS1RB7p3Oi5dum52cbzmLwmYwvuLNkoFm~XitEQZUpAn4Y9cYhlr2t5soiZHKFvkIGuswrA6eg9pSKdfApstDnui2rRuNlq9oJpl3g1pfbn6LRaaSrU6XSph1~o9UfDxENyVmS2jaQ06NpMQ4MP2JqwXYWx6aksODmGut8ifdI9fOy9xStGaYwDxuhF-6GupjU855aQMiSHsWflSO4EGFMjrSpWK8XlXvsK12gc6UvK3Xqvf2pGzg-KrjojVBav~CRZekFTH4QUcOZE8DmmhSLJsy~zAHlCOqUIxata8RhvCHM44EFhKGO9ZJU5b~zH3dYF0aNDEhVEO6kEdDA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'))
-                      ])),
-            )
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 800,
+                            height: 40,
+                            child: TextField(
+                              controller: c.urlController,
+                              style: const TextStyle(color: Colors.white),
+                              cursorColor: Colors.white,
+                              decoration: InputDecoration(
+                                  prefixIcon: Image.network(
+                                      'https://s3-alpha-sig.figma.com/img/862a/978f/e8862e8ba14275ceafb493e7ec00aa61?Expires=1655683200&Signature=c~-03z3VsMLk78P0cY3tmslVc1fhrcgjS1kJ7GtBkKeSfZnu~AMYgxhpz7cPC50tUU6T1yhL-EsQS~DuADcesZSfQiL75PNeh4eXnrmQLq1CEStFyEsL8a-Pj7TLYhu3-NMxefHZLUYEojD~0w9903rn9idFZuHdoqO171~~qIvzm49STmahpAlW7sS2UMwqZYtJD531y-WtzBwmNMK8l3xsTv4066tvgvV8x~2UJRjy9a4hgRt3Upp1P7UbXnOQ7n0e67H5uDalH882rt-EdbDVvL7OYwoPv3cOlGhmvf9oRuN6hvQPLg5R1uf2jnoJ008yL0RoPL0aNt2LSZeVRg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                  hintText: "Input link here",
+                                  suffixIcon: SizedBox(
+                                    width: 100,
+                                    height: 40,
+                                    child: InkWell(
+                                      onTap: () {
+                                        c.submit();
+                                      },
+                                      child: Image.network(
+                                          'https://s3-alpha-sig.figma.com/img/97be/86ea/0d749f1a9b9f08a43ba6d0ef55e600a0?Expires=1655683200&Signature=U6ti-AlDCJi2709Fe3tm5WSh-fOQEriFxmqIjteyYjGF2QJTYu-c9aLspi7r2TJ1ul~8GR0C6Y2BVIdtC3n14bcq0AOd21CIqBIOiVGSLN8l7RqKH8o68pK1DPztp~ROwp4yllwTC2EzAhsTIygPdmPYDv1Hx5Ovp14Y6FOne7S02d4jmkn6iu0IKYxerMog5iWkcUkck~EylfW-aFolgAdbG4zYtpLN16jWPar2JQD4bjqNS7XhHAOo9G~EZCcdmoPHbcqyhOYt5OF4nc1gBj9-Kd6Vb6HiGwz~Rkuyfa0LpFZoU77ZgIBh3yFJ9AtFPUhsFlD8jDCJQ6~0QUg9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'),
+                                    ),
+                                  ),
+                                  hintStyle: const TextStyle(
+                                      fontSize: 20.0, color: Colors.white),
+                                  filled: true,
+                                  fillColor:
+                                      const Color.fromRGBO(36, 39, 49, 0.7),
+                                  hoverColor:
+                                      const Color.fromRGBO(36, 39, 49, 0.7),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                    borderSide: BorderSide.none,
+                                  )),
+                            ),
+                          )
+                        ],
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(top: 50),
+                          child: Image.network(
+                              'https://s3-alpha-sig.figma.com/img/db34/a5f9/d826de7261e27619153b1af1859c7dba?Expires=1656288000&Signature=Qd3ZtS1RB7p3Oi5dum52cbzmLwmYwvuLNkoFm~XitEQZUpAn4Y9cYhlr2t5soiZHKFvkIGuswrA6eg9pSKdfApstDnui2rRuNlq9oJpl3g1pfbn6LRaaSrU6XSph1~o9UfDxENyVmS2jaQ06NpMQ4MP2JqwXYWx6aksODmGut8ifdI9fOy9xStGaYwDxuhF-6GupjU855aQMiSHsWflSO4EGFMjrSpWK8XlXvsK12gc6UvK3Xqvf2pGzg-KrjojVBav~CRZekFTH4QUcOZE8DmmhSLJsy~zAHlCOqUIxata8RhvCHM44EFhKGO9ZJU5b~zH3dYF0aNDEhVEO6kEdDA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA'))
+                    ]))
           ],
         ),
       ),
