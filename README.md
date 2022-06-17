@@ -18,7 +18,7 @@ Draft는 AI와 키워드 밀도 분석을 기반으로 논문(nature comunicatio
 
 정보 전달 글을 분석할때 가장 좋은 방법은 핵심어를 기준으로 분석하는 것이라 생각합니다. 하지만 현재까지 빠른 논문 분석을 위해서는 관심 및 목적에 따른 핵심어 설정 후, 검색 기능을 통해 문단 하나하나를 읽어보는 방법밖에 없었습니다. 이에 Draft 는 키워드 검색 뿐만이 아니라 키워드의 등장 빈도에 해당하는 데이터도 시각화하여 사용자에게 제공하여 사용자가 읽어야 하는 부분에 대한 우선순위 선정에 도움을 주고자 합니다.
 
-**[구성 flow]** **[figma](https://www.figma.com/file/gNznrSMLdDRU0qhggi3DFM/Project_UNIX)-Draft?node-id=0%3A1)** 통해 확인가능
+**[구성 flow]** **[figma](https://www.figma.com/file/gNznrSMLdDRU0qhggi3DFM/Project_UNIX-Draft?node-id=0%3A1)** 통해 확인가능
 
 ## Main flow test 방법
 
