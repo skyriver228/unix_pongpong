@@ -49,10 +49,7 @@ $ python flow.py
 
 ```markdown
 $ cd fastapi_main
-$ http POST :8000/analysis \
-    url=https://www.nature.com/articles/s41467-022-29811-6 \
-    keywords:='["λem", "λmax", "yield"]' \
-    article=@article.txt
+$ http POST :8000/input url=https://www.nature.com/articles/s41467-022-29811-6#Abs1
 ```
 
 **[keyword density data]**
@@ -61,8 +58,10 @@ $ http POST :8000/analysis \
 
 ```markdown
 $ cd fastapi_main
-$ http POST :8000/input url=https://www.nature.com/articles/s41467-022-29811-6#Abs1
-```
+$ http POST :8000/analysis \
+    url=https://www.nature.com/articles/s41467-022-29811-6 \
+    keywords:='["λem", "λmax", "yield"]' \
+    article=@article.txt```
 
 ### 예시 결과
 
