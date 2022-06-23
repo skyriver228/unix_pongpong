@@ -29,7 +29,7 @@ Draft는 AI와 키워드 밀도 분석을 기반으로 논문([nature communicat
 ```markdown
 $ conda create -n <venv_name> python=3.9
 $ conda activate <venv_name>
-$ pip install -r requirements.txt
+$ pip install -r requirments.txt
 ```
 
 ### fastapi_main에서 실제로 main flow 확인해보기
